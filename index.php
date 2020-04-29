@@ -2,36 +2,6 @@
     include_once("_php/acesso.php");
     include_once("_php/classes.php");
     
-    if (isset($_POST['enviar'])) {
-        try{
-                //Aqui definimos as variáveis com os valores que desejamos enviar
-                $file = "@answer.json";
-
-                //URL para onde vai ser enviado nosso POST
-                $url = $url_enviar;
-
-                // Aqui inicio a função CURL
-                $curl = curl_init();
-                //aqu eu pego a URL para onde será enviado o POST
-                curl_setopt($curl, CURLOPT_URL, $url);
-                curl_setopt($curl,CURLOPT_HTTPHEADER,array("Content-Type:multipart/form-data"));
-                curl_setopt($curl, CURLOPT_POST, 1);
-                //aqui eu pego os dados para enviar via POST
-                curl_setopt($curl, CURLOPT_POSTFIELDS, $file);
-                curl_setopt ($curl, CURLOPT_RETURNTRANSFER, 1); // call return content
-                curl_setopt ($curl, CURLOPT_FOLLOWLOCATION, 1); // navigate the endpoint
-                curl_setopt ($curl, CURLOPT_POST, true); // set as post
-                $response = curl_exec($curl);
-                echo ($response);    
-                curl_close($curl);
-                
-                    
-            } catch(Exception $e){
-                 return $e->getMessage();
-            }
-    }
-
-    
     foreach ($_POST as $key => $val){
     if (isset($key)){
             switch($key){
@@ -61,7 +31,7 @@
 
                case "enviar": {
                     $COMUNICACAO = new COMUNICACAO;
-                    $enviaDadosAPI = $COMUNICACAO->enviaDadosAPI($url_receber);
+                    $enviaDadosAPI = $COMUNICACAO->enviaDadosAPI($url_enviar);
                      //Exibe a resposta da API
                     echo $enviaDadosAPI;
                     break;
@@ -90,18 +60,13 @@
         
         <main> 
             <div id="janela_formulario">
-                <form action="index.php" enctype="multipart/form-data" method="post">
+                <form action="index.php" enctype="multipart/form-data" method="POST">
                     <h1 style="text-align:center;">Desafio CodeNation</h1>    
-                    <!--<input type="submit" name="receber" value="Receber Dados">*/-->
-                    <input type="submit" name="salvar" value="Receber/Salvar Arquivo answer.json">
+                    <input type="submit" name="salvar"          value="Receber/Salvar Arquivo answer.json">
                     <input type="submit" name="descriptografar" value="Descriptografar">
-                    <input type="submit" name="sha1" value="Converter em SHA1">
-                    
-                    
-                    <form action="index.php" method="POST" enctype="multipart/form-data">
-                          <input type="file" name="answer" value="answer">
-                          <input type="submit" name="enviar" value="enviar">
-                   </form>
+                    <input type="submit" name="sha1"            value="Converter em SHA1">
+                    <input type="file"   name="answer"          value="answer">
+                    <input type="submit" name="enviar"          value="enviar">
                 </form>
             </div>
         </main>

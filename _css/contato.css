@@ -43,6 +43,15 @@ main div#janela_formulario form input[type="text"] {
     margin-bottom: 25px;
 }
 
+main div#janela_formulario form input[type="file"] {
+    width:350px;
+    padding:10px;
+    border:1px solid #CDC99B;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 25px;
+}
+
 main div#janela_formulario form input[type="email"] {
     width:350px;
     padding:10px;

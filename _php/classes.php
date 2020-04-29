@@ -1,9 +1,10 @@
 <?php     
+    require_once("_php/acesso.php");
     class COMUNICACAO {
+ 
         public $filename = "answer.json";
         public $result_rec = null;
         public $decifrado = "";
-        
         
         //FUNCAO INCLUIR DADOS 
         public function incluirDados($dados_rec) {
@@ -97,6 +98,7 @@
         }
         
         
+        
         //FUNÇÃO PARA GERAR O SHA1
         public function SHA1($url_r) {
             $dados_json = $this->lerDados();
@@ -109,9 +111,32 @@
         } 
         
         
+        
         //FUNÇÃO PARA ENVIAR OS DADOS PARA A API
         public function enviaDadosAPI($url_r) {
+            
+            if (isset($_POST['enviar'])) {
+                
+                if (isset($_FILES['answer']['tmp_name'])) {
+                    $ch = curl_init();
+                    $cfile = new CURLFile($_FILES['answer']['tmp_name'], $_FILES['answer']['type'], $_FILES['answer']['name']);
+                    $data = array("answer"=>$cfile);
+                    
+                    curl_setopt_array(
+                        $ch,
+                        array(
+                            CURLOPT_URL         => $url_r,
+                            CURLOPT_POST        => true,
+                            CURLOPT_POSTFIELDS  => $data));
+                    $response = curl_exec($ch);
+                    
+                    if ($response == true) {
+                        echo "Filed Posted!";
+                    } else
+                        echo "Error: ".curl_error($ch);
+                }
 
+            }
         }    
         
         
