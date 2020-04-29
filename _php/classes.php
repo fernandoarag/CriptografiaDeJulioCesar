@@ -114,26 +114,32 @@
         
         //FUNÇÃO PARA ENVIAR OS DADOS PARA A API
         public function enviaDadosAPI($url_r) {
-            
+            //VERIFICA SE A VARIAVEL $_POST ESTÁ VAZIA
             if (isset($_POST['enviar'])) {
-                
+                //VERIFICA SE FOI ENCAMINHADO UM ARQUIVO NO INPUT FILE
                 if (isset($_FILES['answer']['tmp_name'])) {
+                    //CRIA A VARIAVEL CURL
                     $ch = curl_init();
+                    //CRIA PARAMETROS DO CURL PASSANDO: CAMINHO(TMP_NAME),TIPO(TYPE),NOME(NOME ORIGINAL DO ARQUIVO)
                     $cfile = new CURLFile($_FILES['answer']['tmp_name'], $_FILES['answer']['type'], $_FILES['answer']['name']);
+                    //CRIA O ARQUIVO CFILE
                     $data = array("answer"=>$cfile);
                     
+                    //SETA AS CONFIGURACOES PARA TRANSMISSÃO
                     curl_setopt_array(
                         $ch,
                         array(
                             CURLOPT_URL         => $url_r,
                             CURLOPT_POST        => true,
                             CURLOPT_POSTFIELDS  => $data));
-                    $response = curl_exec($ch);
                     
+                    //EXECUTA O ENVIO
+                    $response = curl_exec($ch);
+                    //TESTA O RETORNO DO ENVIO
                     if ($response == true) {
-                        echo "Filed Posted!";
+                        echo "<BR>Filed Posted!";
                     } else
-                        echo "Error: ".curl_error($ch);
+                        echo "<BR>Error: ".curl_error($ch);
                 }
 
             }
