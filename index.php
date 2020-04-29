@@ -5,7 +5,7 @@
     if (isset($_POST['enviar'])) {
         try{
                 //Aqui definimos as variáveis com os valores que desejamos enviar
-                $file = "@/json/answer.json";
+                $file = "@answer.json";
 
                 //URL para onde vai ser enviado nosso POST
                 $url = $url_enviar;
