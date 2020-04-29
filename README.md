@@ -43,6 +43,10 @@ OBS: a API espera um arquivo sendo enviado como multipart/form-data, como se fos
 
 O resultado da submissão vai ser sua nota ou o erro correspondente. Você pode submeter quantas vezes achar necessário, mas a API não vai permitir mais de uma submissão por minuto.
 
-## Observação
+## Observação 
 
 Neste estágio da aceleração não solicitamos que você nos envie o código do programa que você criou, mas recomendamos que você guarde uma cópia pois o mesmo pode ser solicitado nas próximas fases do processo.
+
+## Orientações:
+
+Ir no arquivo "_php/acesso.php" e informar o $token de acordo com o passado para você.
