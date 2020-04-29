@@ -64,7 +64,7 @@
                     <h1 style="text-align:center;">Desafio CodeNation</h1>    
                     <input type="submit" name="salvar"          value="Receber/Salvar Arquivo answer.json">
                     <input type="submit" name="descriptografar" value="Descriptografar">
-                    <input type="submit" name="sha1"            value="Converter em SHA1">
+                    <input type="submit" name="sha1"            value="Converter em SHA1"><br>
                     <input type="file"   name="answer"          value="answer">
                     <input type="submit" name="enviar"          value="enviar">
                 </form>
